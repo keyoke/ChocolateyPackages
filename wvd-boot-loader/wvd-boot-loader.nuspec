@@ -6,6 +6,7 @@
     <title>wvd-boot-loader (Install)</title>
     <authors>Microsoft Corporation</authors>
     <projectUrl>https://docs.microsoft.com/en-us/azure/virtual-desktop/create-host-pools-powershell#register-the-virtual-machines-to-the-windows-virtual-desktop-host-pool</projectUrl>
+    <packageSourceUrl>https://github.com/keyoke/ChocolateyPackages/tree/master/wvd-boot-loader</packageSourceUrl>
     <tags>wvd windows virtual desktop boot loader</tags>
     <summary>Install the Windows Virtual Desktop Boot Loader</summary>
     <description>Install the Windows Virtual Desktop Boot Loader</description>

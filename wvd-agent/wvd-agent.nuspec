@@ -6,6 +6,7 @@
     <title>wvd-agent (Install)</title>
     <authors>Microsoft Corporation</authors>
     <projectUrl>https://docs.microsoft.com/en-us/azure/virtual-desktop/create-host-pools-powershell#register-the-virtual-machines-to-the-windows-virtual-desktop-host-pool</projectUrl>
+    <packageSourceUrl>https://github.com/keyoke/ChocolateyPackages/tree/master/wvd-agent</packageSourceUrl>
     <tags>wvd windows virtual desktop agent</tags>
     <summary>Install the Windows Virtual Desktop Agent</summary>
     <description>Install the Windows Virtual Desktop Agen </description>
