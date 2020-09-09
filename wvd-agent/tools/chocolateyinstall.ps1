@@ -25,7 +25,7 @@ $packageArgs = @{
   checksum64    = '7A5C46DC754A183A7CA05E57FA8461493A4FA47E1535A80DE9DC893DF9374178'
   checksumType64= 'sha256'
 
-  silentArgs    = "/quiet /qn /norestart /passive REGISTRATIONTOKEN=$($pp['REGISTRATIONTOKEN'])) /l*v `"$($env:TEMP)\$($packageName).$($env:chocolateyPackageVersion).MsiInstall.log`""
+  silentArgs    = "/quiet /qn /norestart /passive REGISTRATIONTOKEN=$($pp['REGISTRATIONTOKEN']) /l*v `"$($env:TEMP)\$($packageName).$($env:chocolateyPackageVersion).MsiInstall.log`""
   validExitCodes= @(0, 3010, 1641)
 }
 
