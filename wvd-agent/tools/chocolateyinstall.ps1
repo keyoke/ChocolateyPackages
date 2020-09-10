@@ -22,7 +22,7 @@ $packageArgs = @{
 
   checksum      = ''
   checksumType  = 'sha256'
-  checksum64    = '7A5C46DC754A183A7CA05E57FA8461493A4FA47E1535A80DE9DC893DF9374178'
+  checksum64    = '8EA6A987A82213A5C466DB858D00FDDCE023080448C3133526E7F2164378BD6F'
   checksumType64= 'sha256'
 
   silentArgs    = "/quiet /qn /norestart /passive REGISTRATIONTOKEN=$($pp['REGISTRATIONTOKEN']) /l*v `"$($env:TEMP)\$($packageName).$($env:chocolateyPackageVersion).MsiInstall.log`""
