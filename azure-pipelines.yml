@@ -15,5 +15,5 @@ steps:
   displayName: 'Install the AU Powershell Module'
 - task: PowerShell@2
   inputs:
-    filePath: 'update.ps1'
+    filePath: '$(Build.SourcesDirectory)\wvd-agent\update.ps1'
     workingDirectory: '$(Build.SourcesDirectory)\wvd-agent\'
