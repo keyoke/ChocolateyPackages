@@ -7,6 +7,9 @@ schedules:
 
 trigger: none
 
+workspace:
+  clean: all
+
 pool:
   vmImage: 'windows-latest'
 
