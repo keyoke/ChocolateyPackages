@@ -16,4 +16,4 @@ steps:
 - task: PowerShell@2
   inputs:
     filePath: 'update.ps1'
-    workingDirectory: '$(Pipeline.Workspace)\wvd-agent\'
+    workingDirectory: '$(Build.SourcesDirectory)\wvd-agent\'
