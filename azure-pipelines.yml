@@ -1,0 +1,12 @@
+schedules:
+- cron: "0 0 * * *"
+  displayName: Daily midnight
+
+trigger: none
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+- powershell: Install-Module au
+  displayName: 'Install the AU Powershell Module'
