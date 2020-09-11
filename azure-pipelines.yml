@@ -26,9 +26,8 @@ steps:
 - task: ChocolateyCommand@0
   inputs:
     command: 'push'
-    pushOperation: 'single'
+    pushOperation: 'multiple'
     pushWorkingDirectory: '$(Build.SourcesDirectory)\wvd-agent\'
-    pushNupkgFileName: '$(Build.SourcesDirectory)\wvd-agent\*.nupkg'
     chocolateySourceType: 'manual'
     pushApikey: '$(ChocoAPIKey)'
 
