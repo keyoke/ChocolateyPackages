@@ -11,10 +11,22 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
+- task: ChocolateyToolInstaller@0
+  displayName: 'Install Chocolatey'
 - powershell: Install-Module -force -name au
   displayName: 'Install the AU Powershell Module'
 - task: PowerShell@2
+  displayName: 'Check for Package Updates'
   inputs:
     filePath: '$(Build.SourcesDirectory)\wvd-agent\update.ps1'
     workingDirectory: '$(Build.SourcesDirectory)\wvd-agent\'
+- task: ChocolateyCommand@0
+  inputs:
+    command: 'push'
+    pushOperation: 'single'
+    pushWorkingDirectory: '$(Build.SourcesDirectory)\wvd-agent\'
+    pushNupkgFileName: '$(Build.SourcesDirectory)\wvd-agent\*.nupkg'
+    chocolateySourceType: 'manual'
+    pushApikey: '$(ChocoAPIKey)'
+
 
