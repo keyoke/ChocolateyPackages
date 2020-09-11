@@ -1,6 +1,9 @@
 schedules:
 - cron: "0 0 * * *"
   displayName: Daily midnight
+  branches:
+    include:
+      - master
 
 trigger: none
 
