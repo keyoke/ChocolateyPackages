@@ -24,6 +24,7 @@ steps:
     filePath: '$(Build.SourcesDirectory)\wvd-agent\update.ps1'
     workingDirectory: '$(Build.SourcesDirectory)\wvd-agent\'
 - task: ChocolateyCommand@0
+  displayName: 'Publish Package Updates'
   inputs:
     command: 'push'
     pushOperation: 'multiple'
