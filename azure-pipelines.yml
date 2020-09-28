@@ -14,6 +14,9 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
+- checkout: self
+  persistCredentials: true
+  clean: true
 - task: PowerShell@2
   displayName: 'Git Set Config'
   inputs:
