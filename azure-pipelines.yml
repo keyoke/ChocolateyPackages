@@ -14,17 +14,24 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
+- task: PowerShell@2
+  displayName: 'Git Set Config'
+  inputs:
+    targetType: 'inline'
+    script: |
+      git config --global user.email "ChocolateyPackages@local.net"
+      git config --global user.name "ChocolateyPackages Build Service Account"
 - task: ChocolateyToolInstaller@0
   displayName: 'Install Chocolatey'
 - powershell: Install-Module -force -name au
   displayName: 'Install the AU Powershell Module'
 - task: PowerShell@2
-  displayName: 'Check for Package Updates'
+  displayName: 'Check for WVD Agent Package Updates'
   inputs:
     filePath: '$(Build.SourcesDirectory)\wvd-agent\update.ps1'
     workingDirectory: '$(Build.SourcesDirectory)\wvd-agent\'
 - task: ChocolateyCommand@0
-  displayName: 'Publish Package Updates'
+  displayName: 'Publish WVD Agent Package Updates'
   inputs:
     command: 'push'
     pushOperation: 'multiple'
@@ -32,19 +39,32 @@ steps:
     chocolateySourceType: 'manual'
     pushApikey: '$(ChocoAPIKey)'
 - task: PowerShell@2
-  displayName: 'Git Config'
-  inputs:
-    targetType: 'inline'
-    script: |
-      git config --global user.email "ChocolateyPackages@local.net"
-      git config --global user.name "ChocolateyPackages Build Service Account"
-- task: PowerShell@2
   displayName: 'Git Add Changes'
   inputs:
     targetType: 'inline'
     script: |
       git add wvd-agent.nuspec
     workingDirectory: '$(Build.SourcesDirectory)\wvd-agent\'
+- task: PowerShell@2
+  displayName: 'Check for WVD Bootloader Package Updates'
+  inputs:
+    filePath: '$(Build.SourcesDirectory)\wvd-boot-loader\update.ps1'
+    workingDirectory: '$(Build.SourcesDirectory)\wvd-boot-loader\'
+- task: ChocolateyCommand@0
+  displayName: 'Publish WVD Bootloader Package Updates'
+  inputs:
+    command: 'push'
+    pushOperation: 'multiple'
+    pushWorkingDirectory: '$(Build.SourcesDirectory)\wvd-boot-loader\'
+    chocolateySourceType: 'manual'
+    pushApikey: '$(ChocoAPIKey)'
+- task: PowerShell@2
+  displayName: 'Git Add Changes'
+  inputs:
+    targetType: 'inline'
+    script: |
+      git add wvd-boot-loader.nuspec
+    workingDirectory: '$(Build.SourcesDirectory)\wvd-boot-loader\'
 - task: PowerShell@2
   displayName: 'Git Commit & Push Changes'
   inputs:

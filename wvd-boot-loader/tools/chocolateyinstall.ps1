@@ -1,7 +1,7 @@
 ﻿
 $ErrorActionPreference = 'Stop';
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url        = ''
+$url      = 'https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RWrxrH'
 $url64      = 'https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RWrxrH'
 
 $packageArgs = @{
@@ -13,9 +13,7 @@ $packageArgs = @{
 
   softwareName  = 'wvd-boot-loader*'
 
-  checksum      = ''
-  checksumType  = 'sha256'
-  checksum64    = '8121C4808E07057FFE81C7C241FBA286F99C02AB5B47103F263BE40EEAA54C56'
+  checksum64    = '8121c4808e07057ffe81c7c241fba286f99c02ab5b47103f263be40eeaa54c56'
   checksumType64= 'sha256'
 
   silentArgs    = "/quiet /qn /norestart /passive /l*v `"$($env:TEMP)\$($packageName).$($env:chocolateyPackageVersion).MsiInstall.log`""
