@@ -21,8 +21,8 @@ function global:au_GetLatest {
 
     @{
         URL64   = $download_url
-        Version = "$version-beta"
+        Version = "$version"
     }
 }
 
-update
+Update -ChecksumFor 64
