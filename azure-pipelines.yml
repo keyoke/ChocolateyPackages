@@ -31,5 +31,24 @@ steps:
     pushWorkingDirectory: '$(Build.SourcesDirectory)\wvd-agent\'
     chocolateySourceType: 'manual'
     pushApikey: '$(ChocoAPIKey)'
+- task: PowerShell@2
+  displayName: 'Git Add Changes'
+  inputs:
+    targetType: 'inline'
+    script: |
+      git add wvd-agent.nuspec
+    workingDirectory: '$(Build.SourcesDirectory)\wvd-agent\'
+- task: PowerShell@2
+  displayName: 'Git Commit'
+  inputs:
+    targetType: 'inline'
+    script: |
+      git commit -m "Azure Pipeline Package Update"
+- task: PowerShell@2
+  displayName: 'Git Push Changes'
+  inputs:
+    targetType: 'inline'
+    script: |
+      git push
 
 
