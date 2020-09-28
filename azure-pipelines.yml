@@ -1,14 +1,13 @@
+pr: none
+trigger: none
+
 schedules:
 - cron: "0 */4 * * *"
-  displayName: Daily midnight
+  displayName: Every 4 Hours
   branches:
     include:
       - master
-
-trigger: none
-
-workspace:
-  clean: all
+  always: true
 
 pool:
   vmImage: 'windows-latest'
