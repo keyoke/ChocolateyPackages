@@ -9,7 +9,7 @@ if (!$pp['REGISTRATIONTOKEN']) {
 }
 
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url      = 'https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RWrmXv'
+$url      = ''
 $url64      = 'https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RWrmXv'
 
 $packageArgs = @{
