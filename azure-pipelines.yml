@@ -58,5 +58,9 @@ steps:
           git commit -m "Azure Pipeline Auto Package Update"
           git push
       }
+      else
+      {
+          Write-Output "No Staged Changes"
+      }
 
 
