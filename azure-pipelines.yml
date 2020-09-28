@@ -43,7 +43,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      git commit -m "Azure Pipeline Package Update"
+      git commit -m "Azure Pipeline Auto Package Update"
 - task: PowerShell@2
   displayName: 'Git Push Changes'
   inputs:
