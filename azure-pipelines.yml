@@ -46,16 +46,17 @@ steps:
       git add wvd-agent.nuspec
     workingDirectory: '$(Build.SourcesDirectory)\wvd-agent\'
 - task: PowerShell@2
-  displayName: 'Git Commit'
+  displayName: 'Git Commit & Push Changes'
   inputs:
     targetType: 'inline'
     script: |
-      git commit -m "Azure Pipeline Auto Package Update"
-- task: PowerShell@2
-  displayName: 'Git Push Changes'
-  inputs:
-    targetType: 'inline'
-    script: |
-      git push
+      # Have any local changes been staged
+      git diff --staged --quiet
+
+      if($LastExitCode -eq 1)
+      {
+          git commit -m "Azure Pipeline Auto Package Update"
+          git push
+      }
 
 
