@@ -1,14 +1,12 @@
 ﻿
 $ErrorActionPreference = 'Stop';
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url      = ''
 $url64      = 'https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RWrxrH'
 
 $packageArgs = @{
   packageName   = $env:ChocolateyPackageName
   unzipLocation = $toolsDir
-  fileType      = 'MSI'
-  url           = $url
+  fileType      = 'MSI'  
   url64bit      = $url64
 
   softwareName  = 'wvd-boot-loader*'
