@@ -32,6 +32,13 @@ steps:
     chocolateySourceType: 'manual'
     pushApikey: '$(ChocoAPIKey)'
 - task: PowerShell@2
+  displayName: 'Git Config'
+  inputs:
+    targetType: 'inline'
+    script: |
+      git config --global user.email "ChocolateyPackages@local.net"
+      git config --global user.name "ChocolateyPackages Build Service Account"
+- task: PowerShell@2
   displayName: 'Git Add Changes'
   inputs:
     targetType: 'inline'
