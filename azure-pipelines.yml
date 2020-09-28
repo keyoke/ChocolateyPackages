@@ -1,0 +1,66 @@
+schedules:
+- cron: "0 */4 * * *"
+  displayName: Daily midnight
+  branches:
+    include:
+      - master
+
+trigger: none
+
+workspace:
+  clean: all
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+- task: ChocolateyToolInstaller@0
+  displayName: 'Install Chocolatey'
+- powershell: Install-Module -force -name au
+  displayName: 'Install the AU Powershell Module'
+- task: PowerShell@2
+  displayName: 'Check for Package Updates'
+  inputs:
+    filePath: '$(Build.SourcesDirectory)\wvd-agent\update.ps1'
+    workingDirectory: '$(Build.SourcesDirectory)\wvd-agent\'
+- task: ChocolateyCommand@0
+  displayName: 'Publish Package Updates'
+  inputs:
+    command: 'push'
+    pushOperation: 'multiple'
+    pushWorkingDirectory: '$(Build.SourcesDirectory)\wvd-agent\'
+    chocolateySourceType: 'manual'
+    pushApikey: '$(ChocoAPIKey)'
+- task: PowerShell@2
+  displayName: 'Git Config'
+  inputs:
+    targetType: 'inline'
+    script: |
+      git config --global user.email "ChocolateyPackages@local.net"
+      git config --global user.name "ChocolateyPackages Build Service Account"
+- task: PowerShell@2
+  displayName: 'Git Add Changes'
+  inputs:
+    targetType: 'inline'
+    script: |
+      git add wvd-agent.nuspec
+    workingDirectory: '$(Build.SourcesDirectory)\wvd-agent\'
+- task: PowerShell@2
+  displayName: 'Git Commit & Push Changes'
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Have any local changes been staged
+      git diff --staged --quiet
+
+      if($LastExitCode -eq 1)
+      {
+          git commit -m "Azure Pipeline Auto Package Update"
+          git push
+      }
+      else
+      {
+          Write-Output "No Staged Changes"
+      }
+
+
