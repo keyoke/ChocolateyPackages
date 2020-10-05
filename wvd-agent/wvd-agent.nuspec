@@ -9,7 +9,7 @@
     <packageSourceUrl>https://github.com/keyoke/ChocolateyPackages/tree/master/wvd-agent</packageSourceUrl>
     <tags>wvd windows virtual desktop agent</tags>
     <summary>Install the Windows Virtual Desktop Agent</summary>
-    <description>Install the Windows Virtual Desktop Agen </description>
+    <description>Install the Windows Virtual Desktop Agent</description>
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.1.0" />
     </dependencies>
