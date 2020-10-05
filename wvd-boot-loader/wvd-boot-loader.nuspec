@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>wvd-boot-loader</id>
-    <version>2020.01.14</version>
+    <version>2020.1.14</version>
     <title>wvd-boot-loader (Install)</title>
     <authors>Microsoft Corporation</authors>
     <projectUrl>https://docs.microsoft.com/en-us/azure/virtual-desktop/create-host-pools-powershell#register-the-virtual-machines-to-the-windows-virtual-desktop-host-pool</projectUrl>
@@ -10,6 +10,9 @@
     <tags>wvd windows virtual desktop boot loader</tags>
     <summary>Install the Windows Virtual Desktop Boot Loader</summary>
     <description>Install the Windows Virtual Desktop Boot Loader</description>
+    <dependencies>
+      <dependency id="dotnet4.6" />
+    </dependencies>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
