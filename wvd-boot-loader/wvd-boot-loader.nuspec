@@ -4,8 +4,10 @@
     <id>wvd-boot-loader</id>
     <version>2020.01.14</version>
     <title>wvd-boot-loader (Install)</title>
+    <owners>Gareth Emslie</owners>
     <authors>Microsoft Corporation</authors>
-    <projectUrl>https://docs.microsoft.com/en-us/azure/virtual-desktop/create-host-pools-powershell#register-the-virtual-machines-to-the-windows-virtual-desktop-host-pool</projectUrl>
+    <docsUrl>https://docs.microsoft.com/en-us/azure/virtual-desktop/create-host-pools-powershell#register-the-virtual-machines-to-the-windows-virtual-desktop-host-pool</docsUrl>
+    <projectUrl>https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RWrxrH</projectUrl>
     <packageSourceUrl>https://github.com/keyoke/ChocolateyPackages/tree/master/wvd-boot-loader</packageSourceUrl>
     <tags>wvd windows virtual desktop boot loader</tags>
     <summary>Install the Windows Virtual Desktop Boot Loader</summary>
