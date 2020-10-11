@@ -4,15 +4,14 @@
     <id>wvd-agent</id>
     <version>1.0.2195.6400</version>
     <title>wvd-agent (Install)</title>
+    <owners>Gareth Emslie</owners>
     <authors>Microsoft Corporation</authors>
-    <projectUrl>https://docs.microsoft.com/en-us/azure/virtual-desktop/create-host-pools-powershell#register-the-virtual-machines-to-the-windows-virtual-desktop-host-pool</projectUrl>
+    <docsUrl>https://docs.microsoft.com/en-us/azure/virtual-desktop/create-host-pools-powershell#register-the-virtual-machines-to-the-windows-virtual-desktop-host-pool</docsUrl>
+    <projectUrl>https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RWrmXv</projectUrl>
     <packageSourceUrl>https://github.com/keyoke/ChocolateyPackages/tree/master/wvd-agent</packageSourceUrl>
     <tags>wvd windows virtual desktop agent</tags>
     <summary>Install the Windows Virtual Desktop Agent</summary>
     <description>Install the Windows Virtual Desktop Agent</description>
-    <dependencies>
-      <dependency id="chocolatey-core.extension" version="1.1.0" />
-    </dependencies>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
