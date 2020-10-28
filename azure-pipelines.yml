@@ -16,13 +16,6 @@ steps:
 - checkout: self
   persistCredentials: true
   clean: true
-- task: PowerShell@2
-  displayName: 'Git Set Config'
-  inputs:
-    targetType: 'inline'
-    script: |
-      git config --global user.email "ChocolateyPackages@local.net"
-      git config --global user.name "ChocolateyPackages Build Service Account"
 - task: ChocolateyToolInstaller@0
   displayName: 'Install Chocolatey'
 - powershell: Install-Module -force -name au
@@ -41,13 +34,6 @@ steps:
     chocolateySourceType: 'manual'
     pushApikey: '$(ChocoAPIKey)'
 - task: PowerShell@2
-  displayName: 'Git Add Changes'
-  inputs:
-    targetType: 'inline'
-    script: |
-      git add wvd-agent.nuspec
-    workingDirectory: '$(Build.SourcesDirectory)\wvd-agent\'
-- task: PowerShell@2
   displayName: 'Check for WVD Bootloader Package Updates'
   inputs:
     filePath: '$(Build.SourcesDirectory)\wvd-boot-loader\update.ps1'
@@ -61,17 +47,21 @@ steps:
     chocolateySourceType: 'manual'
     pushApikey: '$(ChocoAPIKey)'
 - task: PowerShell@2
-  displayName: 'Git Add Changes'
-  inputs:
-    targetType: 'inline'
-    script: |
-      git add wvd-boot-loader.nuspec
-    workingDirectory: '$(Build.SourcesDirectory)\wvd-boot-loader\'
-- task: PowerShell@2
   displayName: 'Git Commit & Push Changes'
   inputs:
     targetType: 'inline'
     script: |
+      # Set Git Config
+      git config --global user.email "ChocolateyPackages@local.net"
+      git config --global user.name "ChocolateyPackages Build Service Account"
+      
+      # Git Checkout master branch
+      git checkout master
+
+      # Add nuspec files as they may have changed
+      git add $(Build.SourcesDirectory)\wvd-agent\wvd-agent.nuspec
+      git add $(Build.SourcesDirectory)\wvd-boot-loader\wvd-boot-loader.nuspec
+
       # Have any local changes been staged
       git diff --staged --quiet
 
