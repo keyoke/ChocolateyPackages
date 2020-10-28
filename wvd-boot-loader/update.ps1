@@ -12,11 +12,16 @@ function global:au_SearchReplace {
 }
 
 function global:au_GetLatest {
-    $response = Invoke-WebRequest -Method HEAD -UseBasicParsing -Uri $download_url  | Select-Object headers
-    $modified = [DateTime] $response.Headers["Last-Modified"]
-    $modifiedUTC = $modified.ToUniversalTime()
+    $response = Invoke-WebRequest -Method GET -UseBasicParsing -Uri $download_url -OutFile "$($PWD)\Microsoft.RDInfra.RDAgentBootLoader.Installer-x64.msi"
 
-    $version =  $modifiedUTC.ToString("yyyy.MM.dd")
+    $process = Start-Process "MSIEXEC" -ArgumentList "/a Microsoft.RDInfra.RDAgentBootLoader.Installer-x64.msi /qn TARGETDIR=$($PWD)\Microsoft.RDInfra.RDAgentBootLoader.Installer-x64\" -Wait -NoNewWindow
+    
+    if(!(Test-Path "$($PWD)\Microsoft.RDInfra.RDAgentBootLoader.Installer-x64\Microsoft RDInfra\RDAgentBootLoader\RDAgentBootLoader.exe" -PathType Leaf))
+    {
+        throw "'$($PWD)\Microsoft.RDInfra.RDAgentBootLoader.Installer-x64\Microsoft RDInfra\RDAgentBootLoader\RDAgentBootLoader.exe' does not exist!"
+    }
+
+    $version = [System.Diagnostics.FileVersionInfo]::GetVersionInfo("$($PWD)\Microsoft.RDInfra.RDAgentBootLoader.Installer-x64\Microsoft RDInfra\RDAgentBootLoader\RDAgentBootLoader.exe").FileVersion #.ProductVersion
 
     @{
         URL64   = $download_url
