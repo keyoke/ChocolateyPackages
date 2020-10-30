@@ -2,8 +2,8 @@ pr: none
 trigger: none
 
 schedules:
-- cron: "0 */4 * * *"
-  displayName: Every 4 Hours
+- cron: "0 */12 * * *"
+  displayName: Every 12 Hours
   branches:
     include:
       - master
