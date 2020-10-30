@@ -22,7 +22,7 @@ steps:
   displayName: 'Cache AU PowerShell module'
   name: cache_psmodule
   inputs:      
-    key: PSMODULE | "$(Agent.OS)" | "AU"
+    key: PSMODULE | "AU"
     cacheHitVar: cache_hit
     path: $(UserProfile)\Documents\PowerShell\Modules
 - powershell: Install-Module -Force -Name au -Scope CurrentUser
