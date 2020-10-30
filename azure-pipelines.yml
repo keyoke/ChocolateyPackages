@@ -18,7 +18,15 @@ steps:
   clean: true
 - task: ChocolateyToolInstaller@0
   displayName: 'Install Chocolatey'
-- powershell: Install-Module -force -name au
+- task: Cache@2
+  displayName: 'Cache AU PowerShell module'
+  name: cache_psmodule
+  inputs:      
+    key: PSMODULE | "$(Agent.OS)" | "AU"
+    cacheHitVar: cache_hit
+    path: $(UserProfile)\Documents\PowerShell\Modules
+- powershell: Install-Module -Force -Name au -Scope CurrentUser
+  condition: and(succeeded(), ne(variables.cache_psmodule.cache_hit, true))
   displayName: 'Install the AU Powershell Module'
 - task: PowerShell@2
   displayName: 'Check for WVD Agent Package Updates'
