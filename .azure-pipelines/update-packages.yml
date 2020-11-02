@@ -12,6 +12,9 @@ schedules:
 pool:
   vmImage: 'windows-latest'
 
+variables:
+- AU_MODULE_VERSION : 2019.5.22
+
 steps:
 - checkout: self
   persistCredentials: true
@@ -22,12 +25,15 @@ steps:
   displayName: 'Cache AU PowerShell module'
   name: cache_psmodule
   inputs:      
-    key: PSMODULE | "$(Agent.OS)" | "AU"
+    key: PSMODULE | "AU" | "$(AU_MODULE_VERSION)"
     cacheHitVar: cache_hit
-    path: $(UserProfile)\Documents\PowerShell\Modules
-- powershell: Install-Module -Force -Name au -Scope CurrentUser
+    path: $(Pipeline.Workspace)\PSModules
+- powershell: |
+    # Install-Module -Name au -RequiredVersion $(AU_MODULE_VERSION) -Scope CurrentUser -Force
+    Find-Module -Name au -RequiredVersion $(AU_MODULE_VERSION) -Repository 'PSGallery' | Save-Module -Path '$(Pipeline.Workspace)\PSModules' -Force
+    Import-Module -FullyQualifiedName '$(Pipeline.Workspace)\PSModules\AU'
   condition: and(succeeded(), ne(variables.cache_psmodule.cache_hit, true))
-  displayName: 'Install the AU Powershell Module'
+  displayName: 'Install the AU Powershell Module'  
 - task: PowerShell@2
   displayName: 'Check for WVD Agent Package Updates'
   inputs:
@@ -82,5 +88,3 @@ steps:
       {
           Write-Output "No Staged Changes"
       }
-
-
