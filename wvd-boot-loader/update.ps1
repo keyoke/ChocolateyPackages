@@ -1,6 +1,6 @@
 $LoadedModules = Get-Module | Select Name
-if (!$LoadedModules -like "*$ModuleName*") {
-    import-module au
+if (!$LoadedModules -like "AU") {
+    import-module -Name AU
 }
 $progressPreference = 'silentlyContinue' 
 
