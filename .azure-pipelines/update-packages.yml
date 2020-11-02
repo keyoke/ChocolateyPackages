@@ -30,7 +30,7 @@ steps:
     cacheHitVar: cache_hit
     path: $(Pipeline.Workspace)\PSModules
 - powershell: |
-    Install-Module -Name au -RequiredVersion $(AU_MODULE_VERSION)
+    Install-Module -Name au -RequiredVersion $(AU_MODULE_VERSION) -Force -Scope CurrentUser
     # Find-Module -Name au -RequiredVersion $(AU_MODULE_VERSION) -Repository 'PSGallery' | Save-Module -Path '$(Pipeline.Workspace)\PSModules' -Force
     # Import-Module -FullyQualifiedName '$(Pipeline.Workspace)\PSModules\AU'
   condition: and(succeeded(), ne(variables.cache_psmodule.cache_hit, true))
