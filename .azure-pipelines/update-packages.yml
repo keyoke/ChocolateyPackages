@@ -13,7 +13,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-- AU_MODULE_VERSION : 2019.5.22
+  AU_MODULE_VERSION : 2019.5.22
 
 steps:
 - checkout: self
