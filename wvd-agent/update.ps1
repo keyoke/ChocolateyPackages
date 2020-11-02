@@ -1,4 +1,6 @@
-import-module au
+if (-not (Get-Module -Name au)) {
+    import-module au
+}
 $progressPreference = 'silentlyContinue' 
 
 $download_url = 'https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RWrmXv'
