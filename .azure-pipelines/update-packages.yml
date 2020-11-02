@@ -24,14 +24,15 @@ steps:
 - task: Cache@2
   displayName: 'Cache AU PowerShell module'
   name: cache_psmodule
+  enabled: false
   inputs:      
     key: PSMODULE | "AU" | "$(AU_MODULE_VERSION)"
     cacheHitVar: cache_hit
     path: $(Pipeline.Workspace)\PSModules
 - powershell: |
-    Find-Module -Name au -RequiredVersion $(AU_MODULE_VERSION) -Repository 'PSGallery' | Save-Module -Path '$(Pipeline.Workspace)\PSModules' -Force
-    Import-Module -FullyQualifiedName '$(Pipeline.Workspace)\PSModules\AU'
-    Get-Module | Select Name
+    Install-Module -Name au -RequiredVersion $(AU_MODULE_VERSION)
+    # Find-Module -Name au -RequiredVersion $(AU_MODULE_VERSION) -Repository 'PSGallery' | Save-Module -Path '$(Pipeline.Workspace)\PSModules' -Force
+    # Import-Module -FullyQualifiedName '$(Pipeline.Workspace)\PSModules\AU'
   condition: and(succeeded(), ne(variables.cache_psmodule.cache_hit, true))
   displayName: 'Install the AU Powershell Module'  
 - task: PowerShell@2
