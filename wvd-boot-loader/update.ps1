@@ -1,4 +1,4 @@
-if (Get-Module -Name AU) {
+if (-not (Get-Module -Name AU)) {
     Import-Module -Name AU
 }
 $progressPreference = 'silentlyContinue' 
