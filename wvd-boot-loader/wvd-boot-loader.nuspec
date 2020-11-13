@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>wvd-boot-loader</id>
-    <version>1.0.0.1</version>
+    <version>1.0.2659.0</version>
     <title>wvd-boot-loader (Install)</title>
     <owners>Gareth Emslie</owners>
     <authors>Microsoft Corporation</authors>
