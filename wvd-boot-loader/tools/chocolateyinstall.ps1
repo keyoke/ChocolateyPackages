@@ -1,6 +1,20 @@
 ﻿
 $ErrorActionPreference = 'Stop';
 
+$os = (Get-ComputerInfo).OsProductType
+if($os -ne "WorkStation")
+{
+  if(Get-WindowsFeature -Name "RDS-RD-Server" | Where-Object {$_.InstallState -ne "Installed"})
+  {
+    Write-Warning "Package requires 'Remote Desktop Session Host' Windows Feature is enabled. Install with 'Add-WindowsFeature RDS-RD-Server'."
+  }
+}
+
+if (!$pp['REGISTRATIONTOKEN']) { 
+  $pp['REGISTRATIONTOKEN'] = "!INVALID KEY"
+  Write-Warning "Package needs parameter 'REGISTRATIONTOKEN' to install, that must be provided in params or in prompt."
+}
+
 $toolsDir = Split-Path $MyInvocation.MyCommand.Definition
 
 $packageArgs = @{
