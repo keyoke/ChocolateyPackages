@@ -13,7 +13,7 @@
     <summary>Install the Windows Virtual Desktop Boot Loader</summary>
     <description>Install the Windows Virtual Desktop Boot Loader</description>
     <dependencies>
-      <dependency id="netfx-4.6.2" />
+      <dependency id="netfx-4.5.1" />
     </dependencies>
   </metadata>
   <files>
