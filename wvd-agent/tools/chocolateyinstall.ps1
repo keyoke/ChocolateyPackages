@@ -8,25 +8,17 @@ if (!$pp['REGISTRATIONTOKEN']) {
   Write-Warning "Package needs parameter 'REGISTRATIONTOKEN' to install, that must be provided in params or in prompt."
 }
 
-$toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url64      = 'https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RWrmXv'
+$toolsDir = Split-Path $MyInvocation.MyCommand.Definition
 
 $packageArgs = @{
-  packageName   = $env:ChocolateyPackageName
-  unzipLocation = $toolsDir
-  fileType      = 'MSI'
-  url64bit      = $url64
-
+  packageName    = $env:ChocolateyPackageName
   softwareName  = 'wvd-agent*'
-
-  checksum64    = '8ea6a987a82213a5c466db858d00fddce023080448c3133526e7f2164378bd6f'
-  checksumType64= 'sha256'
-
-  silentArgs    = "/quiet /qn /norestart /l*v `"$($env:TEMP)\$($packageName).$($env:chocolateyPackageVersion).MsiInstall.log`" REGISTRATIONTOKEN=`"$($pp['REGISTRATIONTOKEN'])`""
+  fileType       = 'MSI'
+  file64         = Get-Item $toolsDir\*x64.msi
+  silentArgs     = "/quiet /qn /norestart /l*v `"$($env:TEMP)\$($packageName).$($env:chocolateyPackageVersion).MsiInstall.log`" REGISTRATIONTOKEN=`"$($pp['REGISTRATIONTOKEN'])`""
   validExitCodes= @(0, 3010, 1641)
 }
-
-Install-ChocolateyPackage @packageArgs
+Install-ChocolateyInstallPackage @packageArgs
 
 
 
