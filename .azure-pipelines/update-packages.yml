@@ -74,7 +74,9 @@ steps:
       git checkout master
 
       # Add nuspec files as they may have changed
+      git add $(Build.SourcesDirectory)\wvd-agent\legal\VERIFICATION.txt
       git add $(Build.SourcesDirectory)\wvd-agent\wvd-agent.nuspec
+      git add $(Build.SourcesDirectory)\wvd-boot-loader\legal\VERIFICATION.txt
       git add $(Build.SourcesDirectory)\wvd-boot-loader\wvd-boot-loader.nuspec
 
       # Have any local changes been staged
