@@ -6,7 +6,12 @@ $progressPreference = 'silentlyContinue'
 $download_url = 'https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RWrxrH'
 
 function global:au_SearchReplace {
-   @{ }
+    @{
+        ".\legal\VERIFICATION.txt" = @{
+           "(?i)(\s+x64:).*"            = "`${1} $($Latest.URL64)"
+           "(?i)(checksum64:).*"        = "`${1} $($Latest.Checksum64)"
+         }
+      }
 }
 
 function global:au_GetLatest {
