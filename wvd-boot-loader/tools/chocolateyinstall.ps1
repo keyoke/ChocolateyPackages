@@ -10,22 +10,25 @@ if($os -ne "WorkStation")
   }
 }
 
-if (!$pp['REGISTRATIONTOKEN']) { 
-  $pp['REGISTRATIONTOKEN'] = "!INVALID KEY"
-  Write-Warning "Package needs parameter 'REGISTRATIONTOKEN' to install, that must be provided in params or in prompt."
-}
-
-$toolsDir = Split-Path $MyInvocation.MyCommand.Definition
+$toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
+$url64      = 'https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RWrxrH'
 
 $packageArgs = @{
-  packageName    = $env:ChocolateyPackageName
+  packageName   = $env:ChocolateyPackageName
+  unzipLocation = $toolsDir
+  fileType      = 'MSI'  
+  url64bit      = $url64
+
   softwareName  = 'wvd-boot-loader*'
-  fileType       = 'msi'
-  file64         = Get-Item $toolsDir\*x64.msi
+
+  checksum64    = '8121c4808e07057ffe81c7c241fba286f99c02ab5b47103f263be40eeaa54c56'
+  checksumType64= 'sha256'
+
   silentArgs    = "/quiet /qn /norestart /l*v `"$($env:TEMP)\$($packageName).$($env:chocolateyPackageVersion).MsiInstall.log`""
   validExitCodes= @(0, 3010, 1641)
 }
-Install-ChocolateyInstallPackage @packageArgs
+
+Install-ChocolateyPackage @packageArgs
 
 
 

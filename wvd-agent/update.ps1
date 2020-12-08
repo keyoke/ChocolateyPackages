@@ -6,13 +6,13 @@ $progressPreference = 'silentlyContinue'
 $download_url = 'https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RWrmXv'
 
 function global:au_SearchReplace {
-    @{
-        ".\legal\VERIFICATION.txt" = @{
-           "(?i)(\s+x64:).*"            = "`${1} $($Latest.URL64)"
-           "(?i)(checksum64:).*"        = "`${1} $($Latest.Checksum64)"
-         }
-      }
- }
+   @{
+        ".\tools\chocolateyInstall.ps1" = @{
+            '(?i)(^\s*\$url64\s*=\s*)(''.*'')'   = "`$1'$($Latest.URL64)'"
+            "(?i)(^\s*checksum64\s*=\s*)('.*')" = "`$1'$($Latest.Checksum64)'"
+        }
+    }
+}
 
 function global:au_GetLatest {
     $response = Invoke-WebRequest -Method HEAD -UseBasicParsing -Uri $download_url  | Select-Object headers
@@ -25,12 +25,7 @@ function global:au_GetLatest {
     @{
         URL64   = $download_url
         Version = "$version"
-        FileType = "msi"
     }
 }
 
-function global:au_BeforeUpdate() {
-    Get-RemoteFiles -Purge -FileNameBase "Microsoft.RDInfra.RDAgent.Installer"
-}
-
-Update -ChecksumFor none
+Update -ChecksumFor 64
