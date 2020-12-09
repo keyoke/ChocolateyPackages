@@ -13,7 +13,7 @@
     <summary>Install the Windows Virtual Desktop Agent</summary>
     <description>Install the Windows Virtual Desktop Agent</description>
     <dependencies>
-      <dependency id="netfx-4.5.1" />
+      <dependency id="netfx-4.6.2" />
     </dependencies>
   </metadata>
   <files>
