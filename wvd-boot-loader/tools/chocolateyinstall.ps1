@@ -21,7 +21,7 @@ $packageArgs = @{
 
   softwareName  = 'wvd-boot-loader*'
 
-  checksum64    = '8121c4808e07057ffe81c7c241fba286f99c02ab5b47103f263be40eeaa54c56'
+  checksum64    = '742239192dcfc6398ba33f2a6781319b49efc861843337ebbc28fd73555ff114'
   checksumType64= 'sha256'
 
   silentArgs    = "/quiet /qn /norestart /l*v `"$($env:TEMP)\$($packageName).$($env:chocolateyPackageVersion).MsiInstall.log`""
