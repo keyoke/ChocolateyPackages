@@ -11,7 +11,12 @@
     <packageSourceUrl>https://github.com/keyoke/ChocolateyPackages/tree/master/wvd-agent</packageSourceUrl>
     <tags>wvd windows virtual desktop agent</tags>
     <summary>Install the Windows Virtual Desktop Agent</summary>
-    <description>Install the Windows Virtual Desktop Agent</description>
+    <description>
+      <![CDATA[
+Install the Windows Virtual Desktop Agent.
+### Notes
+* This package always installs the latest version of the Windows Virtual Desktop Agent, regardless of the version specified in the chocolatey package. Microsoft do not officially offer older versions for download as the tools are self-updating. Because of this you may get checksum mismatch between the time Microsoft releases a new installer, and the package is automatically updated.
+]]></description>
     <dependencies>
       <dependency id="netfx-4.6.2" />
     </dependencies>
