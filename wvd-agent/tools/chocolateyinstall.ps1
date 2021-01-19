@@ -28,7 +28,7 @@ $packageArgs = @{
 
   softwareName  = 'wvd-agent*'
 
-  checksum64    = '8ea6a987a82213a5c466db858d00fddce023080448c3133526e7f2164378bd6f'
+  checksum64    = '99dfbb1b3d4fe810a05062b1d5cd537e83637aadeaa1073c87eca0f4dbb7ab9a'
   checksumType64= 'sha256'
 
   silentArgs    = "/quiet /qn /norestart /l*v `"$($env:TEMP)\$($packageName).$($env:chocolateyPackageVersion).MsiInstall.log`" REGISTRATIONTOKEN=`"$($pp['REGISTRATIONTOKEN'])`""
