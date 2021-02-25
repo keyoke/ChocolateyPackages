@@ -3,7 +3,7 @@ trigger: none
 
 schedules:
 - cron: "0 8 * * *"
-  displayName: Every day 8am
+  displayName: run every day 8am
   branches:
     include:
       - master
