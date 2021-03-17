@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>wvd-agent</id>
-    <version>1.0.2548.6500</version>
+    <version>1.0.2800.2800</version>
     <title>wvd-agent (Install)</title>
     <owners>Gareth Emslie</owners>
     <authors>Microsoft Corporation</authors>
